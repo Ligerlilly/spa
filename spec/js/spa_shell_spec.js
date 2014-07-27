@@ -19,6 +19,7 @@ describe("chat click Event", function () {
     expect( spyEvent ).toHaveBeenTriggered(); 
   	expect( $(".spa-shell-chat" ).height() ).toBe( 15 );
   });
+  
       
   
 });
