@@ -162,11 +162,7 @@ spa.shell = (function () {
 	  	changeAnchorPart({
 	  		chat: (stateMap.is_chat_retracted ? 'open' : 'closed' )
 	  	});
-	  	// if ( toggleChat( stateMap.is_chat_retracted ) ) {
-	  		// $.uriAnchor.setAnchor({
-	  			// chat : ( stateMap.is_chat_retracted ? 'open' : 'closed' )
-	  		// });
-	  	// } 
+	  	
 	    return false;
 	  };
 	  
@@ -184,6 +180,10 @@ spa.shell = (function () {
 	    $.uriAnchor.configModule({
 	    	schema_map : configMap.anchor_schema_map
 	    });
+	    
+	    spa.chat.configModule( {} );
+	    spa.chat.initModule( jqueryMap.$chat );
+	    
 	    $(window)
 	      .bind( 'hashchange', onHashchange )
 	      .trigger( 'hashchange' );
