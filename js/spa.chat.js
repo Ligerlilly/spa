@@ -62,7 +62,8 @@ spa.chat = (function () {
     },
     jqueryMap = {},
 
-    setJqueryMap, getEmSize, setPxSizes, setSliderPosition, configModule, initModule;
+    setJqueryMap, getEmSize, setPxSizes, setSliderPosition, configModule, initModule,
+    removeSlider, handleResize;
     
     getEmSize = function ( elem ) {
     	return Number(
@@ -164,6 +165,21 @@ spa.chat = (function () {
 		return true;
 	};
 	
+	removeSlider = function () {
+      if ( jqueryMap.$slider ) {
+      	jqueryMap.$slider.remove();
+      	jqueryMap = {};
+      }
+      stateMap.$append_target = null;
+      stateMap.position_type  = 'closed';
+      
+      configMap.chat_model       = null;
+      configMap.people_model     = null;
+      configMap. set_chat_anchor = null;
+      
+      return true;
+	};
+	
 	initModule = function ( $append_target ) {
 		$append_target.append( configMap.main_html );
 		stateMap.$append_target = $append_target;
@@ -181,6 +197,7 @@ spa.chat = (function () {
 		onClickToggle     : onClickToggle,
 		setSliderPosition : setSliderPosition,
 		configModule      : configModule,
-		initModule        : initModule
+		initModule        : initModule,
+		removeSlider      : removeSlider
 	};
 }());
