@@ -213,7 +213,6 @@ spa.chat = (function () {
 	};
 	
 	return {
-		onClickToggle     : onClickToggle,
 		setSliderPosition : setSliderPosition,
 		configModule      : configModule,
 		initModule        : initModule,
