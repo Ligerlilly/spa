@@ -13,7 +13,7 @@ spa.fake = (function () {
   getPeopleList = function () {
   	return [
   	  { name : 'Betty', _id : 'id_01',
-  	    css_map : { top : 20 , left : 20,
+  	    css_map : { top : 20, left : 20,
   	      'background-color' : 'rgb( 128, 128, 128 )' 
   	    }
   	  },
@@ -34,4 +34,5 @@ spa.fake = (function () {
   	  }
   	];
   };
+  return { getPeopleList : getPeopleList };
 }());

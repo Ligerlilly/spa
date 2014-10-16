@@ -19,7 +19,7 @@ spa.model = (function () {
     isFakeData = true,
     personProto, makePerson, people, initModule;
     
-    personPronto = function () {
+    personProto = {
       get_is_user : function () {
       	return this.cid === stateMap.user.cid;
       },
@@ -56,7 +56,35 @@ spa.model = (function () {
       get_cid_map : function () { return stateMap.people_cid_map }
     };
     
-    intiModule = function () {};
+    initModule = function () {
+      var i, people_list, person_map;
+      
+      // initialize anonymous person
+      stateMap.anon_user = makePerson({
+      	cid  : configMap.anon_id,
+      	id   : configMap.anon_id,
+      	name : 'anonymous'
+      });
+      stateMap.user = stateMap.anon_user;
+      
+      if ( isFakeData ) {
+      	people_list = spa.fake.getPeopleList();
+      	for ( i=0; i < people_list.length; i++ ) {
+      	  person_map = people_list[i];
+      	  makePerson({
+      	  	cid     : person_map._id,
+      	  	css_map : person_map.css_map,
+      	  	id      : person_map._id,
+      	  	name    : person_map.name
+      	  });
+      	}
+      }
+    };
+    
+    return {
+    	initModule : initModule,
+    	people     : people
+    };
 
 
 
