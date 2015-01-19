@@ -129,24 +129,24 @@ spa.chat = (function () {
 		
 		switch ( position_type ){
 			case 'opened' :
-			  height_px = stateMap.slider_opened_px;
-			  animate_time = configMap.slider_open_time;
-			  slider_title = configMap.slider_opened_title;
-			  toggle_text = '=';
+				height_px    = stateMap.slider_opened_px;
+				animate_time = configMap.slider_open_time;
+				slider_title = configMap.slider_opened_title;
+				toggle_text  = '=';
 			  break;
 			  
 			case 'hidden' :
-			  height_px = 0;
-			  animate_time = configMap.slider_open_time;
-			  slider_title = '';
-			  toggle_text = '+';
+				height_px    = 0;
+				animate_time = configMap.slider_open_time;
+				slider_title = '';
+				toggle_text  = '+';
 			  break;
 			  
 			case 'closed' :
-			  height_px = stateMap.slider_closed_px;
-			  animate_time = configMap.slider_close_time;
-			  slider_title = configMap.slider_closed_title;
-			  toggle_text = '+';
+				height_px    = stateMap.slider_closed_px;
+				animate_time = configMap.slider_close_time;
+				slider_title = configMap.slider_closed_title;
+				toggle_text  = '+';
 			  break;
 			  
 			  default : return false;
