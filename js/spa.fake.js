@@ -67,7 +67,7 @@ spa.fake = (function () {
       listchange_idto = setTimeout( function () {
         if ( callback_map.listchange ) {
           callback_map.listchange([ peopleList ]);
-          listchange_idto = undefinded;
+          listchange_idto = undefined;
         }
         else { send_listchange(); }
       }, 1000);

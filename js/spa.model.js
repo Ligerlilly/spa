@@ -35,6 +35,16 @@ spa.model = (function () {
       return 'c' + String( stateMap.cid_serial++ );
     };
 
+    clearPeopleDb = function () {
+      var user = stateMap.user;
+      stateMap.people_db      = TAFFY();
+      stateMap.people_cid_map = {};
+      if ( user ) {
+        stateMap.people_db.insert( user );
+        stateMap.people_cid_map[user.cid] = user;
+      }
+    };
+
     completeLogin = function ( user_list ) {
       var user_map = user_list[ 0 ];
       delete stateMap.people_cid_map[ user_map.cid ];
