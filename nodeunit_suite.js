@@ -27,7 +27,7 @@ require( './js/spa.fake.js' );
 require( './js/spa.data.js' );
 require( './js/spa.model.js' );
 
-spa.initModule();
+/*spa.initModule();
 
 var $t = $( '<div/>' );
 $.gevent.subscribe( $t, 'spa-login', 
@@ -36,5 +36,36 @@ $.gevent.subscribe( $t, 'spa-login',
   }
 );
 
-spa.model.people.login( 'Fred' );
+spa.model.people.login( 'Fred' );*/
+
+var testAcct = function ( test ) {
+	var $t, test_str, user, on_login, $defer = $.Deferred();
+
+	//set expected test count
+	test.expect(1);
+
+	//define handler for 'spa-login' event
+	on_login = function () { $defer.resolve(); };
+
+	//initialize
+	spa.initModule( null );
+	//spa.model.setDataMode( 'fake' );
+
+	//create a jQuery object and subscribe
+	$t = $('<div/>');
+	$.gevent.subscribe( $t, 'spa-login', on_login );
+
+	spa.model.people.login( 'Fred' );
+
+	//confirm user is no longer anonymous
+	user = spa.model.people.get_user();
+	test_str = 'user is no longer anonymous';
+	test.ok( ! user.get_is_anon(), test_str );
+
+	//declare finished once setup and login
+	$defer.done( test.done );
+};
+
+module.exports = { testAcct : testAcct };
+
 

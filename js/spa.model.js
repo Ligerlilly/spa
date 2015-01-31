@@ -98,7 +98,7 @@ spa.model = (function () {
     people = (function () {
       var get_by_cid, get_db, get_user, login, logout
 
-      get_by_cid = function () {
+      get_by_cid = function ( cid ) {
         return stateMap.people_cid_map[ cid ];
       };
 
@@ -146,7 +146,7 @@ spa.model = (function () {
     chat = (function () {
       var
         _publish_list_change, _publish_updatechat, _update_list, _leave_chat,
-        get_chatee, join_chat, send_msg, set_chatee, chatee = null;
+        get_chatee, join_chat, send_msg, set_chatee, update_avatar, chatee = null;
 
       _update_list = function ( arg_list ) {
         var i, person_map, make_person_map, people_list = arg_list[ 0 ], is_chatee_online = false;
@@ -261,12 +261,20 @@ spa.model = (function () {
         return true;
       };
 
+      update_avatar = function ( avatar_update_map ) {
+        var sio = isFakeData ? spa.fake.mockSio : spa.data.getSio();
+        if ( sio ) {
+          sio.emit ( 'updateavatar', avatar_update_map );
+        }
+      };
+
       return { 
-        _leave     : _leave_chat,
-        get_chatee : get_chatee,
-        join       : join_chat,
-        send_msg   : send_msg,
-        set_chatee : set_chatee
+        _leave        : _leave_chat,
+        get_chatee    : get_chatee,
+        join          : join_chat,
+        send_msg      : send_msg,
+        set_chatee    : set_chatee,
+        update_avatar : update_avatar
       };
     }());
     
