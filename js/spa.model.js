@@ -126,7 +126,7 @@ spa.model = (function () {
 
       logout = function () {
         var is_removed, user = stateMap.user;
-        chat.leave();
+        chat._leave();
         is_removed    = removePerson( user );
         stateMap.user = stateMap.anon_user;
 
